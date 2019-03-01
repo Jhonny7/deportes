@@ -1,5 +1,7 @@
 {
   "name": "deportes",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
