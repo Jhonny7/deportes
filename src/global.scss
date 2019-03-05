@@ -1,11 +1,873 @@
 // http://ionicframework.com/docs/theming/
-@import '~@ionic/angular/css/core.css';
-@import '~@ionic/angular/css/normalize.css';
-@import '~@ionic/angular/css/structure.css';
-@import '~@ionic/angular/css/typography.css';
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
 
-@import '~@ionic/angular/css/padding.css';
-@import '~@ionic/angular/css/float-elements.css';
-@import '~@ionic/angular/css/text-alignment.css';
-@import '~@ionic/angular/css/text-transformation.css';
-@import '~@ionic/angular/css/flex-utils.css';
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+.button-ios {
+  border-radius: 4px;
+  height: 0em;
+  font-size: 1.6rem;
+  color: #fff;
+  background-color: #488aff;
+  margin: 0.4rem 0.2rem;
+  padding: 0 1em;
+}
+.buttonEnd {
+  width: 50%;
+  margin-right: -26px;
+}
+
+.tituloHeader {
+  font-family: champagne__limousinesregular;
+}
+.tituloHeaderBold {
+  font-family: champagne__limousinesbold;
+}
+///////////////////////////////////////////////////////////////////////tabla
+
+.ngx-datatable.bootstrap {
+  box-shadow: none;
+  font-size: 13px;
+  .datatable-header {
+    height: unset !important;
+    .datatable-header-cell {
+      vertical-align: bottom;
+      padding: 0.75rem;
+      border-bottom: 1px solid #d1d4d7;
+      .datatable-header-cell-label {
+        line-height: 24px;
+      }
+    }
+  }
+  .datatable-body {
+    .datatable-body-row {
+      vertical-align: top;
+      border-top: 1px solid #d1d4d7;
+      &.datatable-row-even {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+      &.active {
+        background-color: #1483ff;
+        color: #fff;
+      }
+      .datatable-body-cell {
+        padding: 0.75rem;
+        text-align: left;
+        vertical-align: top;
+      }
+    }
+    .empty-row {
+      $alert-padding-y: 0.75rem !default;
+      $alert-padding-x: 1.25rem !default;
+      position: relative;
+      padding: $alert-padding-y $alert-padding-x;
+      margin-bottom: 0;
+    }
+  }
+  .datatable-footer {
+    background: #424242;
+    color: #ededed;
+    margin-top: -1px;
+    .page-count {
+      line-height: 50px;
+      height: 50px;
+      padding: 0 1.2rem;
+    }
+    .datatable-pager {
+      margin: 0 10px;
+      vertical-align: top;
+      ul {
+        li {
+          margin: 10px 0px;
+          &:not(.disabled) {
+            &.active,
+            &:hover {
+              a {
+                background-color: #545454;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+      a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        vertical-align: top;
+        text-decoration: none;
+        vertical-align: bottom;
+        color: #ededed;
+      }
+      .datatable-icon-left,
+      .datatable-icon-skip,
+      .datatable-icon-right,
+      .datatable-icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px;
+      }
+    }
+  }
+  // Summary row styles
+  .datatable-summary-row {
+    .datatable-body-row {
+      .datatable-body-cell {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/////////////
+//////////////////////////////////////////////////////dark
+.ngx-datatable.dark {
+  box-shadow: none;
+  background: #1b1e27;
+  border: 1px solid #2f3646;
+  color: #fff;
+  font-size: 13px;
+
+  .datatable-header {
+    background: #181b24;
+    color: #72809b;
+
+    .datatable-header-cell {
+      text-align: left;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold;
+
+      .datatable-header-cell-label {
+        line-height: 24px;
+      }
+    }
+  }
+
+  .datatable-body {
+    background: #1a1e28;
+
+    .datatable-body-row {
+      border-top: 1px solid #2f3646;
+
+      .datatable-body-cell {
+        text-align: left;
+        padding: 0.5rem 1.2rem;
+        vertical-align: top;
+      }
+
+      &:hover {
+        background: #171b24;
+        transition-property: background;
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
+      }
+
+      &:focus {
+        background-color: #232837;
+      }
+
+      &.active {
+        background-color: #1483ff;
+        color: #fff;
+      }
+    }
+  }
+
+  .datatable-footer {
+    background: #232837;
+    color: #72809b;
+    margin-top: -1px;
+
+    .page-count {
+      line-height: 50px;
+      height: 50px;
+      padding: 0 1.2rem;
+    }
+
+    .datatable-pager {
+      margin: 0 10px;
+      vertical-align: top;
+
+      ul {
+        li {
+          margin: 10px 0px;
+
+          &:not(.disabled) {
+            &.active a,
+            &:hover a {
+              background-color: #455066;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        vertical-align: top;
+        text-decoration: none;
+        vertical-align: bottom;
+        color: #72809b;
+      }
+
+      .datatable-icon-left,
+      .datatable-icon-skip,
+      .datatable-icon-right,
+      .datatable-icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px;
+      }
+    }
+  }
+
+  .datatable-summary-row {
+    .datatable-body-row {
+      background-color: #14171f;
+
+      &:hover {
+        background-color: #14171f;
+      }
+
+      .datatable-body-cell {
+        font-weight: bold;
+      }
+    }
+  }
+}
+//////////////////
+
+.colorContent {
+  background-color: #d4ddec !important;
+}
+.item-md {
+  color: #fff;
+  padding-left: 16px;
+  padding-right: 0;
+  position: relative;
+  font-size: 1.6rem;
+  font-weight: normal;
+  text-transform: none;
+  color: #fff;
+  background-color: #ffffff08;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-ios .toolbar-ios:first-child .toolbar-background-ios {
+  border-width: 0.55px 0 0;
+  background-color: #000d30;
+}
+
+.content-md {
+  color: #000;
+  background-color: #000d30;
+}
+
+.toolbar-background-md {
+  border-color: #e9ebf1;
+  background: #000d30;
+}
+
+button.myBtn {
+  display: block !important;
+  margin: 0 auto !important;
+  background-color: #2c509e !important;
+  width: 80% !important;
+  margin-top: 20px !important;
+  border-radius: 7px !important;
+  margin-bottom: 3% !important;
+}
+
+.button-outline-md {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #0e0e10;
+  color: #0e0e10;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+input.myInput3 {
+  border-width: 1px;
+  border-color: rgb(235, 235, 235);
+  border-style: solid;
+  border-radius: 6px;
+  /*background-color: rgb(255, 255, 255);*/
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 10px;
+  height: 43px;
+  margin-bottom: 3%;
+  //margin-top: 4%;
+  border-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.68);
+}
+
+.myArea {
+  border-width: 1px;
+  border-color: rgb(235, 235, 235);
+  border-style: solid;
+  border-radius: 6px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 10px;
+  height: 130px;
+  margin-bottom: 3%;
+  margin-top: 4%;
+  border-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.68);
+}
+
+.mySelect {
+  border-width: 1px;
+  border-color: rgb(235, 235, 235);
+  border-style: solid;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 10px;
+  height: 43px;
+  margin-bottom: 3%;
+  border-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.68);
+  color: #313131;
+  font-size: 86%;
+}
+
+.loading-wrapper {
+  opacity: 1;
+  transform: scale(0.7);
+}
+//Alertas
+.errorAlert {
+  // text color for basic alerts
+  color: black;
+
+  // alert modal page bg color. Warning this will remove the alert transparency
+  background-color: #2222226b;
+
+  button {
+    width: 100%;
+    color: white !important;
+    background-color: #ff0000 !important;
+    text-align: center !important;
+    border: solid 1px #cec8c8;
+  }
+
+  .alert-head {
+    text-align: center;
+  }
+
+  .button-inner {
+    display: inherit;
+  }
+
+  .alert-message {
+    color: white; // text color for confirm alerts
+  }
+
+  .alert-wrapper {
+    background-color: #fff;
+  }
+  .alert-md .alert-button {
+    text-align: center !important;
+  }
+}
+.warnAlert {
+  // text color for basic alerts
+  color: black;
+
+  // alert modal page bg color. Warning this will remove the alert transparency
+  background-color: #2222226b;
+
+  button {
+    width: 100%;
+    color: black !important; // button text color
+    background-color: #ffe904 !important;
+    text-align: center !important;
+    border: solid 1px #cec8c8;
+  }
+
+  .alert-head {
+    text-align: center;
+  }
+
+  .button-inner {
+    display: inherit;
+  }
+
+  .alert-message {
+    color: white; // text color for confirm alerts
+  }
+
+  .alert-wrapper {
+    background-color: #fff;
+  }
+  .alert-md .alert-button {
+    text-align: center !important;
+  }
+}
+.alertCustomCss {
+  // text color for basic alerts
+  color: black;
+
+  // alert modal page bg color. Warning this will remove the alert transparency
+  background-color: #2222226b;
+
+  button {
+    width: 100%;
+    color: black !important; // button text color
+    background-color: #11b6e4 !important;
+    text-align: center !important;
+    //button bg color
+  }
+
+  .alert-head {
+    text-align: center;
+  }
+
+  .button-inner {
+    display: inherit;
+  }
+
+  .alert-message {
+    color: white; // text color for confirm alerts
+  }
+
+  .alert-wrapper {
+    background-color: #fff;
+  }
+  .alert-md .alert-button {
+    text-align: center !important;
+  }
+}
+// Animate CSS
+.animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+.input-normal {
+  width: 80%;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  height: 34px;
+  border-radius: 2px;
+  padding: 8px;
+  border: none;
+  margin-top: -5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.claseImg {
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.botonFooter {
+  margin-top: -3px;
+  margin-right: 6px;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+  animation-duration: 0.75s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+.logo {
+  margin-top: 23%;
+  width: 50%;
+}
+
+.contenedor {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  border-radius: 6px;
+  padding: 17px;
+  text-align: justify;
+  font-size: 123%;
+  line-height: 1.5;
+  background-color: #ffffffbd;
+}
+.dual-buttons {
+  margin-top: 10px;
+  .boton-dual {
+    width: 47%;
+    display: inline-block;
+  }
+}
+.img-relleno {
+  border-radius: 5px;
+  box-shadow: 1px 1px 9px 1px #123;
+}
+
+.item-inner {
+  border-bottom: none !important;
+}
+
+@charset "UTF-8";
+
+/*!
+       * animate.css -http://daneden.me/animate
+       * Version - 3.5.1
+       * Licensed under the MIT license - http://opensource.org/licenses/MIT
+       *
+       * Copyright (c) 2016 Daniel Eden
+       */
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.animated.hinge {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+}
+
+.animated.flipOutX,
+.animated.flipOutY,
+.animated.bounceIn,
+.animated.bounceOut {
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+}
+
+@-webkit-keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+.bounce {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+}
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+@-webkit-keyframes rubberBand {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes rubberBand {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+}
+
+@-webkit-keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+@keyframes swing {
+  20% {
+    -webkit-transform: rotate3d(0, 0, 1, 15deg);
+    transform: rotate3d(0, 0, 1, 15deg);
+  }
+
+  40% {
+    -webkit-transform: rotate3d(0, 0, 1, -10deg);
+    transform: rotate3d(0, 0, 1, -10deg);
+  }
+
+  60% {
+    -webkit-transform: rotate3d(0, 0, 1, 5deg);
+    transform: rotate3d(0, 0, 1, 5deg);
+  }
+
+  80% {
+    -webkit-transform: rotate3d(0, 0, 1, -5deg);
+    transform: rotate3d(0, 0, 1, -5deg);
+  }
+
+  to {
+    -webkit-transform: rotate3d(0, 0, 1, 0deg);
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+}
+
+.swing {
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+  -webkit-animation-name: swing;
+  animation-name: swing;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}

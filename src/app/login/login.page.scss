@@ -1,0 +1,54 @@
+.divLogo {
+  text-align: center;
+  margin-top: 20%;
+  margin-bottom: 10%;
+  img {
+    width: 20%;
+  }
+}
+
+.bienvenida{
+    color: black;
+    font-size: 124%;
+    text-align: center;
+    text-shadow: 1px 1px 1px #123;
+}
+
+.credenciales {
+  text-align: -webkit-center;
+  ion-item {
+    width: 80%;
+    ion-input {
+      --highlight-color-focused: #ffce00;
+      font-weight: 300;
+    }
+  }
+  ion-button {
+    margin-top: 15%;
+    width: 80%;
+    button {
+      background-color: #ff4849;
+    }
+  }
+}
+.item-interactive.item-has-focus {
+  --highlight-background: #ff4849;
+}
+.containerMedia {
+  width: 100%;
+  img {
+    width: 9%;
+    margin-left: 1%;
+    vertical-align: bottom;
+  }
+  ion-item {
+    width: 70%;
+    ion-input {
+      --highlight-color-focused: #ffce00;
+      font-weight: 300;
+    }
+  }
+  .columnMedia {
+    display: inline-block;
+  }
+}
