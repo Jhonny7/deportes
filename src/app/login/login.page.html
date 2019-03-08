@@ -1,32 +1,44 @@
-<ion-content padding class="animated fadeIn auth-page">
+<ion-content padding class="animated fadeIn auth-page" style="--background: url(assets/imgs/login/loginFondo.png) no-repeat center center / cover;">
   <div class="divLogo">
-    <img src="assets/imgs/login/helmet.png" alt="">
+    <img src="assets/imgs/login/rugby-ball.png" alt="">
   </div>
   <div class="bienvenida">
     Bienvenid@
   </div>
-  <div class="credenciales">
-    <ion-item>
-      <ion-label position="floating">
-        <ion-icon name="person"></ion-icon> Usuario
-      </ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <div class="containerMedia">
-      <ion-item class="columnMedia">
+  <form [formGroup]="formGroup" (ngSubmit)="verifyShields()">
+    <div class="credenciales">
+      <ion-item>
         <ion-label position="floating">
-          <ion-icon name="key"></ion-icon> Contraseña
+          <ion-icon name="person"></ion-icon> Usuario
         </ion-label>
-        <ion-input type="password"></ion-input>
-        
+        <ion-input formControlName="user" required></ion-input>
       </ion-item>
-      <img src="assets/imgs/login/eye.png" class="columnMedia" alt="">
+      <app-control-messages [control]="formGroup.controls.user"></app-control-messages>
+      <div class="containerMedia">
+        <ion-item class="columnMedia">
+          <ion-label position="floating">
+            <ion-icon name="key"></ion-icon> Contraseña
+          </ion-label>
+          <ion-input formControlName="password" type="{{verPassword}}" required></ion-input>
+
+        </ion-item>
+        <img src="assets/imgs/login/eye.png" class="columnMedia" alt="" (touchstart)="verPasswordMethod($event)"
+          (touchend)="verPasswordMethod($event)">
+      </div>
     </div>
-  </div>
-  <div class="credenciales">
-    <ion-button expand="block" color="casco">
-      <ion-icon slot="end" name="log-in"></ion-icon>
-      Ingresar
-    </ion-button>
-  </div>
+    <div class="divCheck">
+      <ion-item>
+        <ion-label>Mantener Sesión Activa</ion-label>
+        <ion-checkbox color="casco" slot="start" formControlName="sesionActiva"></ion-checkbox>
+      </ion-item>
+
+    </div>
+    <div class="credenciales">
+      <ion-button expand="block" color="casco" type="submit">
+        <ion-icon slot="end" name="log-in"></ion-icon>
+        Ingresar
+      </ion-button>
+    </div>
+  </form>
+
 </ion-content>

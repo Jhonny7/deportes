@@ -24,7 +24,17 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.router.navigateByUrl("/login");
+      let usuario:any = localStorage.getItem("user");
+      if(usuario!=null){
+        usuario = JSON.parse(usuario);
+        if(usuario.id_rol === 1){
+          this.router.navigateByUrl("/home");
+        }else{
+          this.router.navigateByUrl("/home-jugador");
+        }
+      }else{
+        this.router.navigateByUrl("/login");
+      }
     });
   }
 }

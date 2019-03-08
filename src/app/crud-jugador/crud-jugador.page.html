@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="casco">
+    <ion-title>{{operation}} Jugador</ion-title>
+    <ion-buttons slot="start" *ngIf="!plataforma">
+      <ion-button (click)="cancelar()" style="color:#fff">
+        <span color="secundary" showWhen="ios">Cancel</span>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="plataforma">
+      <ion-button (click)="cancelar()" style="color:#fff" slot="end">
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+</ion-content>

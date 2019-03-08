@@ -1,3 +1,11 @@
+.divCheck {
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  ion-item{
+    --inner-border-width: 0 0 0px 0;
+  }
+}
 .divLogo {
   text-align: center;
   margin-top: 20%;
@@ -7,11 +15,11 @@
   }
 }
 
-.bienvenida{
-    color: black;
-    font-size: 124%;
-    text-align: center;
-    text-shadow: 1px 1px 1px #123;
+.bienvenida {
+  color: black;
+  font-size: 124%;
+  text-align: center;
+  text-shadow: 1px 1px 1px #123;
 }
 
 .credenciales {

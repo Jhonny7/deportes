@@ -10,6 +10,47 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+/*Responsives*/
+@media only screen and (max-width: 360px) and (min-width: 0px) {
+  .validators {
+    text-align: left;
+    margin-left: 10%;
+    color: red;
+    text-shadow: 1px 1px 1px #dad8d8;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+}
+@media only screen and (max-width: 375px) and (min-width: 361px) {
+  .validators {
+    text-align: left;
+    margin-left: 14%;
+    color: red;
+    text-shadow: 1px 1px 1px #dad8d8;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+}
+@media only screen and (max-width: 414px) and (min-width: 376px) {
+  .validators {
+    text-align: left;
+    margin-left: 14%;
+    color: red;
+    text-shadow: 1px 1px 1px #dad8d8;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+}
+@media only screen and (max-width: 768px) and (min-width: 415px) {
+  .validators {
+    text-align: left;
+    margin-left: 12%;
+    color: red;
+    text-shadow: 1px 1px 1px #dad8d8;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+}
 .button-ios {
   border-radius: 4px;
   height: 0em;
@@ -361,6 +402,18 @@ input.myInput3 {
   transform: scale(0.7);
 }
 //Alertas
+.alert-button-inner.sc-ion-alert-md {
+  -ms-flex-pack: end;
+  justify-content: center;
+}
+.alert-button-group.sc-ion-alert-md {
+  padding-left: unset;
+  padding-right: unset;
+  -webkit-padding-start: 8px;
+  padding-inline-start: 8px;
+  -webkit-padding-end: 8px;
+  padding-inline-end: 0px;
+}
 .errorAlert {
   // text color for basic alerts
   color: black;
@@ -385,7 +438,7 @@ input.myInput3 {
   }
 
   .alert-message {
-    color: white; // text color for confirm alerts
+    color: #000; // text color for confirm alerts
   }
 
   .alert-wrapper {
@@ -419,7 +472,7 @@ input.myInput3 {
   }
 
   .alert-message {
-    color: white; // text color for confirm alerts
+    color: #000; // text color for confirm alerts
   }
 
   .alert-wrapper {
@@ -453,7 +506,7 @@ input.myInput3 {
   }
 
   .alert-message {
-    color: white; // text color for confirm alerts
+    color: #000; // text color for confirm alerts
   }
 
   .alert-wrapper {
