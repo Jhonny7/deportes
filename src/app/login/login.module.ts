@@ -7,11 +7,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { LoginPage } from './login.page';
 import { ControlMessagesComponent } from 'src/components/control-messages/control-messages.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage
+    component: LoginPage 
   }
 ];
 
@@ -21,8 +22,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
-  declarations: [LoginPage, ControlMessagesComponent]
+  declarations: [LoginPage],
 })
 export class LoginPageModule {}

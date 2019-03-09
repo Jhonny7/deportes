@@ -15,5 +15,80 @@
 </ion-header>
 
 <ion-content padding>
+  <div class="divImg">
+    <img src="assets/imgs/jugador/player.png" (click)="seleccionImagen()" />
+  </div>
+  <div>
+    <form [formGroup]="formGroup" (ngSubmit)="validacion()">
+      <div>
+        <ion-item>
+          <ion-input formControlName="nombre" required placeholder="Nombre"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.nombre"></app-control-messages>
 
+        <ion-item>
+          <ion-input formControlName="apellidoPaterno" required placeholder="Apellido Paterno"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.apellidoPaterno"></app-control-messages>
+
+        <ion-item>
+          <ion-input formControlName="apellidoMaterno" required placeholder="Apellido Materno"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="userName" required placeholder="Username"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.userName"></app-control-messages>
+
+        <ion-item>
+          <ion-input formControlName="password" required placeholder="Password" type="password"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.password"></app-control-messages>
+
+        <ion-item>
+          <ion-input formControlName="confirmPassword" required placeholder="Confirmar Password" type="password"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.confirmPassword"></app-control-messages>
+
+        <ion-item>
+          <ion-label>Rama</ion-label>
+          <ion-select required formControlName="rama" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
+            placeholder="Seleccione Rama">
+            <ion-select-option value="Varonil">Varonil</ion-select-option>
+            <ion-select-option value="Femenil">Femenil</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.rama"></app-control-messages>
+
+        <ion-item>
+          <ion-label>Nivel</ion-label>
+          <ion-select formControlName="nivel" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
+            placeholder="Seleccione Nivel">
+            <ion-select-option *ngFor="let nivel of niveles" [value]="nivel.id">{{nivel.descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.nivel"></app-control-messages>
+
+        <ion-item>
+          <ion-input formControlName="saldo" required placeholder="Saldo en Cuenta" type="number"></ion-input>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.saldo"></app-control-messages>
+
+        <ion-item>
+          <ion-label>Equipo</ion-label>
+          <ion-select multiple="true" formControlName="equipos" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
+            placeholder="Seleccione Equipo">
+            <ion-select-option *ngFor="let equipo of equipos" [value]="equipo.id">{{equipo.descripcion}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <app-control-messages [control]="formGroup.controls.equipos"></app-control-messages>
+      </div>
+      <div class="abajo">
+        <ion-button expand="block" color="casco" type="submit">
+          <ion-icon name="person-add" slot="end"></ion-icon>
+          Aceptar
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>

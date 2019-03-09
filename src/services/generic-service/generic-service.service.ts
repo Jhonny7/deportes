@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,15 @@ export class GenericService {
       params: params
     };
     return this.http.get(this.pathService + path, p);
+  }
+
+  public put(path: string, params: any) {
+    console.log("**Petición PUT**");
+    return this.http.put(this.pathService + path, { params });
+  }
+
+  public post(path: string, params: any) {
+    console.log("**Petición POST**");
+    return this.http.post(this.pathService + path, params);
   }
 }

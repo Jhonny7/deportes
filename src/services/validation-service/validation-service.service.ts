@@ -11,8 +11,10 @@ export class ValidationServiceService {
       'required': 'El campo es requerido',
       'invalidCreditCard': 'Is invalid credit card number',
       'invalidEmailAddress': 'Invalid email address',
-      'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-      'minlength': `Minimum length ${validatorValue.requiredLength}`
+      'invalidPassword': 'Contraseña inválida. La contraseña debe contener al menos 6 caracteres, y un valor numérico.',
+      'minlength': `Minimum length ${validatorValue.requiredLength}`,
+      'seleccion': 'El campo es requerido, selecciona al menos uno',
+      'invalidNumber': 'Ingrese un número válido'
     };
 
     return config[validatorName];
@@ -39,10 +41,20 @@ export class ValidationServiceService {
   static passwordValidator(control) {
     // {6,100}           - Assert password is between 6 and 100 characters
     // (?=.*[0-9])       - Assert a string has at least one number
-    if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
+    if (control.value.match("^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$")) {
       return null;
     } else {
       return { 'invalidPassword': true };
+    }
+  }
+
+  static numberValidator(control) {
+    // {6,100}           - Assert password is between 6 and 100 characters
+    // (?=.*[0-9])       - Assert a string has at least one number
+    if (control.value.match("^[0-9]*$")) {
+      return null;
+    } else {
+      return { 'invalidNumber': true };
     }
   }
 }

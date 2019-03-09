@@ -47,6 +47,7 @@ export class HomePage {
       console.log(res);
       this.spinnerDialog.hide();
     }, (err: HttpErrorResponse) => {
+      console.log(err);
       this.spinnerDialog.hide();
       this.alertaService.errorAlert(this.genericService.headerError, err.error.description, null);
     });
