@@ -6,7 +6,7 @@ import { ControlMessagesComponent } from 'src/components/control-messages/contro
   declarations: [ControlMessagesComponent],
   exports: [ControlMessagesComponent],
   entryComponents: [
-    ControlMessagesComponent,
+    ControlMessagesComponent
   ],
   imports: [
     CommonModule

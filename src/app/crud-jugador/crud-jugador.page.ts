@@ -11,6 +11,7 @@ import { SpinnerDialog } from '@ionic-native/spinner-dialog/ngx';
 import { EquipoModel } from 'src/models/EquipoModel';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet/ngx';
+import { JugadorModel } from 'src/models/JugadorModel';
 
 @Component({
   selector: 'app-crud-jugador',
@@ -28,6 +29,11 @@ export class CrudJugadorPage implements OnInit {
 
   public fotografia: string = null;
 
+  public jugador: any;
+
+  public render: boolean = false;
+  public renderTeams: boolean = true;
+
   constructor(
     private navParms: NavParams,
     private modalCtrl: ModalController,
@@ -39,15 +45,17 @@ export class CrudJugadorPage implements OnInit {
     private camera: Camera,
     private actionSheet: ActionSheet
   ) {
-    this.operation = navParms.get("type");
     this.plataforma = platform.is("android");
-
+    this.operation = navParms.get("type");
+    if (this.operation != "Crear") {
+      this.render = true;
+    }
     this.formGroup = this.formBuilder.group({
       nombre: ['', Validators.required],
       apellidoPaterno: ['', Validators.required],
       apellidoMaterno: [''],
-      userName: ['', Validators.required],
-      password: ['', Validators.compose([Validators.required, ValidationServiceService.passwordValidator])],
+      userName: ['', !this.render ? Validators.required : ""],
+      password: ['', !this.render ? Validators.compose([Validators.required, ValidationServiceService.passwordValidator]) : ""],
       confirmPassword: [''],
       rama: ['', Validators.required],
       nivel: ['', Validators.required],
@@ -55,6 +63,19 @@ export class CrudJugadorPage implements OnInit {
       equipos: ['']
     });
 
+    if (this.operation != "Crear") {
+      this.jugador = navParms.get("jugador");
+
+      this.formGroup.patchValue({
+        apellidoPaterno: this.jugador.apellido_paterno,
+        apellidoMaterno: this.jugador.apellido_materno,
+        nombre: this.jugador.nombre,
+        rama: this.jugador.rama,
+        nivel: this.jugador.idLevel,
+        saldo: this.jugador.sale
+      });
+      this.fotografia = this.jugador.fotografia;
+    }
     this.getLevels();
     this.getTeams();
   }
@@ -62,20 +83,75 @@ export class CrudJugadorPage implements OnInit {
   ngOnInit() {
   }
 
-  cancelar() {
-    this.modalCtrl.dismiss();
+  clearData() {
+    this.getLevels();
+    this.getTeams();
+    this.formGroup.reset();
+    if (this.render) {
+      this.formGroup.patchValue({
+        apellidoPaterno: this.jugador.apellido_paterno,
+        apellidoMaterno: this.jugador.apellido_materno,
+        nombre: this.jugador.nombre,
+        rama: this.jugador.rama,
+        nivel: this.jugador.idLevel,
+        saldo: this.jugador.sale
+      });
+      this.fotografia = this.jugador.fotografia;
+    }
+  }
+
+  cancelar(data: any = null) {
+    console.log(data);
+    this.modalCtrl.dismiss({ data });
   }
 
   validacion() {
+    this.spinnerDialog.show();
     if (this.formGroup.dirty && this.formGroup.valid) {
-      if(this.formGroup.value.password == this.formGroup.value.confirmPassword){
-        this.crearJugador();
-      }else{
-        this.alertaService.warnAlert(this.genericService.headerValidacion, "Las contraseñas ingresadas no coinciden", null);
+      if (!this.render) {
+        if (this.formGroup.value.password == this.formGroup.value.confirmPassword) {
+          this.crearJugador();
+        } else {
+          this.spinnerDialog.hide();
+          this.alertaService.warnAlert(this.genericService.headerValidacion, "Las contraseñas ingresadas no coinciden", null);
+        }
+      } else {
+        this.editarJugador();
       }
     } else {
+      this.spinnerDialog.hide();
       this.alertaService.warnAlert(this.genericService.headerValidacion, "Favor de llenar los campos requeridos", null);
     }
+  }
+  editarJugador(): any {
+    let params = {
+      "apellido_paterno": this.formGroup.value.apellidoPaterno,
+      "apellido_materno": this.formGroup.value.apellidoMaterno == '' ? null : this.formGroup.value.apellidoMaterno,
+      "nombre": this.formGroup.value.nombre,
+      "idLevel": this.formGroup.value.nivel,
+      "rama": this.formGroup.value.rama,
+      "sale": this.formGroup.value.saldo,
+      "fotografia": this.fotografia,
+      "idJugador": this.jugador.id,
+      "equipos": this.formGroup.value.equipos,
+    };
+    console.log(params);
+    this.genericService.post("jugadores/updatePlayer", JSON.stringify(params)).subscribe((res: any) => {
+      console.log(res);
+      let parametros = res;
+      if (parametros.status === "A") {
+        this.alertaService.alertaBasica(this.genericService.headerExito, "El jugador se ha actualizado correctamente", null);
+        this.cancelar(1);
+      } else {
+        this.alertaService.warnAlert(this.genericService.headerValidacion, res.description, null);
+      }
+      this.spinnerDialog.hide();
+    }, (err: HttpErrorResponse) => {
+      console.log(err);
+      console.log(err.error.description);
+      this.spinnerDialog.hide();
+      this.alertaService.errorAlert(this.genericService.headerError, err.error.description, null);
+    });
   }
 
   crearJugador() {
@@ -94,8 +170,13 @@ export class CrudJugadorPage implements OnInit {
     console.log(params);
     this.genericService.post("jugadores/createPlayer", JSON.stringify(params)).subscribe((res: any) => {
       console.log(res);
-      let parametros = res.parameters;
-      
+      let parametros = res;
+      if (parametros.status === "A") {
+        this.alertaService.alertaBasica(this.genericService.headerExito, "El jugador se ha creado correctamente", null);
+        this.cancelar(1);
+      } else {
+        this.alertaService.warnAlert(this.genericService.headerValidacion, res.description, null);
+      }
       this.spinnerDialog.hide();
     }, (err: HttpErrorResponse) => {
       console.log(err);
@@ -105,7 +186,16 @@ export class CrudJugadorPage implements OnInit {
     });
   }
 
+  ionRefresh(event) {
+    setTimeout(() => {
+      //complete()  signify that the refreshing has completed and to close the refresher
+      event.target.complete();
+      this.clearData();
+    }, 3000);
+  }
+
   getLevels() {
+    this.niveles = [];
     this.genericService.get("level/getLevels", new HttpParams()).subscribe((res: any) => {
       console.log(res);
       let parametros = res.parameters;
@@ -116,23 +206,48 @@ export class CrudJugadorPage implements OnInit {
     }, (err: HttpErrorResponse) => {
       console.log(err.error.description);
       this.spinnerDialog.hide();
-      this.alertaService.errorAlert(this.genericService.headerError, err.error.description, null);
+      this.alertaService.errorAlert(this.genericService.headerError, "Verifica tu conexión ya que el campo nivel es requerido, puedes deslizar hacia abajo y actualizar", null);
     });
   }
 
   getTeams() {
-    this.genericService.get("equipos/getTeams", new HttpParams()).subscribe((res: any) => {
-      console.log(res);
-      let parametros = res.parameters;
-      parametros.forEach(equipo => {
-        this.equipos.push(new EquipoModel(equipo.id, equipo.nombre));
+    this.equipos = [];
+    if (!this.render) {
+      console.log("Equipos todos");
+      
+      this.genericService.get("equipos/getTeams", new HttpParams()).subscribe((res: any) => {
+        console.log(res);
+        let parametros = res.parameters;
+        parametros.forEach(equipo => {
+          this.equipos.push(new EquipoModel(equipo.id, equipo.nombre));
+        });
+        this.spinnerDialog.hide();
+      }, (err: HttpErrorResponse) => {
+        console.log(err.error.description);
+        this.spinnerDialog.hide();
+        this.alertaService.errorAlert(this.genericService.headerError, "Verifica tu conexión ya que el campo equipo es requerido, puedes deslizar hacia abajo y actualizar", null);
       });
-      this.spinnerDialog.hide();
-    }, (err: HttpErrorResponse) => {
-      console.log(err.error.description);
-      this.spinnerDialog.hide();
-      this.alertaService.errorAlert(this.genericService.headerError, err.error.description, null);
-    });
+    } else {
+      console.log("Equipos no seleccionados");
+      let params = new HttpParams();
+      params = params.append('idJugador', this.jugador.id.toString());
+      console.log(this.jugador);
+      this.genericService.get("equipos/getTeamsNotAsigned", params).subscribe((res: any) => {
+        console.log(res);
+        let parametros = res.parameters;
+        parametros.forEach(equipo => {
+          this.equipos.push(new EquipoModel(equipo.id, equipo.nombre));
+        });
+        if(this.equipos.length==0){
+          this.renderTeams = false;
+        }
+        this.spinnerDialog.hide();
+      }, (err: HttpErrorResponse) => {
+        console.log(err.error.description);
+        this.spinnerDialog.hide();
+        this.alertaService.errorAlert(this.genericService.headerError, "Verifica tu conexión ya que el campo equipo es requerido, puedes deslizar hacia abajo y actualizar", null);
+      });
+    }
   }
 
   seleccionImagen() {

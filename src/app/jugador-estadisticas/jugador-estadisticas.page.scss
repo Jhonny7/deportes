@@ -1,0 +1,78 @@
+.contenedorJugador {
+  width: 100%;
+  margin-bottom: 30px;
+  .foto {
+    width: 30%;
+    display: inline-block;
+    margin-right: 13px;
+    .imgContainer {
+      border-radius: 50px;
+      box-shadow: 1px 1px 14px 0px #c8c9ca;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .data {
+    width: 66%;
+    display: inline-block;
+    .title {
+      display: inline-block;
+      font-weight: 700;
+      width: 50%;
+      font-size: 74%;
+    }
+    .description {
+      display: inline-block;
+      width: 47%;
+      text-align: -webkit-left;
+      font-size: 78%;
+      margin-left: 5px;
+    }
+  }
+}
+
+.tabla {
+  .celda {
+    display: inline-block;
+    width: 50%;
+    padding: 7px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #d0d1d2;
+    .divider{
+        ion-input{
+            display: inline-block;
+            width: 78%;
+        }
+    }
+  }
+  .tamanio {
+    font-size: 70%;
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0 3px 16px;
+}
+
+.sc-ion-input-ios-h {
+  --padding-top: 0px !important;
+  --padding-end: 0px !important;
+  --padding-bottom: 0px !important;
+  --padding-start: 0 !important;
+  font-size: inherit !important;
+}
+ion-input {
+  .native-input[disabled].sc-ion-input-ios {
+    opacity: 1;
+  }
+}
+
+.abajo {
+  margin-top: 10%;
+  ion-button{
+    width: 48%;
+    display: inline-block;
+    margin: 2px;
+  }
+}

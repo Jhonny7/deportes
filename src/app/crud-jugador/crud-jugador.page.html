@@ -15,6 +15,11 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Actualizar" refreshingSpinner="circles"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="divImg">
     <img src="assets/imgs/jugador/player.png" (click)="seleccionImagen()" />
   </div>
@@ -22,38 +27,43 @@
     <form [formGroup]="formGroup" (ngSubmit)="validacion()">
       <div>
         <ion-item>
-          <ion-input formControlName="nombre" required placeholder="Nombre"></ion-input>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre" required></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.nombre"></app-control-messages>
 
         <ion-item>
-          <ion-input formControlName="apellidoPaterno" required placeholder="Apellido Paterno"></ion-input>
+          <ion-label position="floating">Apellido paterno</ion-label>
+          <ion-input formControlName="apellidoPaterno" required></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.apellidoPaterno"></app-control-messages>
 
         <ion-item>
-          <ion-input formControlName="apellidoMaterno" required placeholder="Apellido Materno"></ion-input>
+          <ion-label position="floating">Apellido materno</ion-label>
+          <ion-input formControlName="apellidoMaterno" required></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-input formControlName="userName" required placeholder="Username"></ion-input>
+        <ion-item *ngIf="!render">
+          <ion-label position="floating">Username</ion-label>
+          <ion-input formControlName="userName" required></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.userName"></app-control-messages>
 
-        <ion-item>
-          <ion-input formControlName="password" required placeholder="Password" type="password"></ion-input>
+        <ion-item *ngIf="!render">
+          <ion-label position="floating">Password</ion-label>
+          <ion-input formControlName="password" required type="password"></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.password"></app-control-messages>
 
-        <ion-item>
-          <ion-input formControlName="confirmPassword" required placeholder="Confirmar Password" type="password"></ion-input>
+        <ion-item *ngIf="!render">
+          <ion-label position="floating">Confirmación password</ion-label>
+          <ion-input formControlName="confirmPassword" required type="password"></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.confirmPassword"></app-control-messages>
 
         <ion-item>
           <ion-label>Rama</ion-label>
-          <ion-select required formControlName="rama" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
-            placeholder="Seleccione Rama">
+          <ion-select required formControlName="rama" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
             <ion-select-option value="Varonil">Varonil</ion-select-option>
             <ion-select-option value="Femenil">Femenil</ion-select-option>
           </ion-select>
@@ -62,19 +72,19 @@
 
         <ion-item>
           <ion-label>Nivel</ion-label>
-          <ion-select formControlName="nivel" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
-            placeholder="Seleccione Nivel">
+          <ion-select formControlName="nivel" [interfaceOptions]="customActionSheetOptions" interface="action-sheet">
             <ion-select-option *ngFor="let nivel of niveles" [value]="nivel.id">{{nivel.descripcion}}</ion-select-option>
           </ion-select>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.nivel"></app-control-messages>
 
         <ion-item>
-          <ion-input formControlName="saldo" required placeholder="Saldo en Cuenta" type="number"></ion-input>
+          <ion-label position="floating">Saldo en Cuenta</ion-label>
+          <ion-input formControlName="saldo" required type="number"></ion-input>
         </ion-item>
         <app-control-messages [control]="formGroup.controls.saldo"></app-control-messages>
 
-        <ion-item>
+        <ion-item *ngIf="renderTeams">
           <ion-label>Equipo</ion-label>
           <ion-select multiple="true" formControlName="equipos" [interfaceOptions]="customActionSheetOptions" interface="action-sheet"
             placeholder="Seleccione Equipo">

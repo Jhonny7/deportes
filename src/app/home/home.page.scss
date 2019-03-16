@@ -2,3 +2,25 @@
   max-height: 35vh;
   overflow: hidden;
 }
+
+.margin_top{
+  margin-top: 0px;
+}
+.margin_top_list{
+  margin-top: 4px;
+}
+.divText{
+  margin-top: -5px;
+  div{
+    display: inline-block;
+    margin-right: 5px;
+  }
+}
+
+.popover-translucent.sc-ion-popover-ios-h .popover-arrow.sc-ion-popover-ios:after, .popover-translucent.sc-ion-popover-ios-h .popover-content.sc-ion-popover-ios {
+  background: rgba(var(--ion-background-color-rgb,255,255,255),.8);
+  top: 47px;
+  left: calc(62px - var(--ion-safe-area-right, 0px)) !important;
+  transform-origin: right top;
+  width: 311px;
+}

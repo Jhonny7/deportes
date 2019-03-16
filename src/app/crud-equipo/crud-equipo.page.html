@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="casco">
+    <ion-title>{{operation}} Equipo</ion-title>
+    <ion-buttons slot="start" *ngIf="!plataforma">
+      <ion-button (click)="cancelar()" style="color:#fff">
+        <span color="secundary" showWhen="ios">Cancel</span>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="plataforma">
+      <ion-button (click)="cancelar()" style="color:#fff" slot="end">
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="divImg">
+        <img src="assets/imgs/equipo/shield.png" (click)="seleccionImagen()" />
+      </div>
+      <div>
+        <form [formGroup]="formGroup" (ngSubmit)="validacion()">
+          <div>
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input formControlName="nombre" required></ion-input>
+            </ion-item>
+            <app-control-messages [control]="formGroup.controls.nombre"></app-control-messages>
+          </div>
+          <div class="abajo">
+            <ion-button expand="block" color="casco" type="submit">
+              <ion-icon name="apps" slot="end"></ion-icon>
+              Aceptar
+            </ion-button>
+          </div>
+        </form>
+      </div>
+</ion-content>

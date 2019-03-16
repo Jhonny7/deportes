@@ -36,4 +36,9 @@ export class GenericService {
     console.log("**Petición POST**");
     return this.http.post(this.pathService + path, params);
   }
+
+  public delete(path: string, params: any) {
+    console.log("**Petición DELETE**");
+    return this.http.delete(this.pathService + path, params);
+  }
 }

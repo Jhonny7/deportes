@@ -1,0 +1,60 @@
+.contenedorJugador {
+  width: 100%;
+  .foto {
+    width: 30%;
+    display: inline-block;
+    margin-right: 13px;
+    .imgContainer {
+      border-radius: 50px;
+      box-shadow: 1px 1px 14px 0px #c8c9ca;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .data {
+    width: 66%;
+    display: inline-block;
+    .title {
+      display: inline-block;
+      font-weight: 700;
+      width: 50%;
+      font-size: 74%;
+    }
+    .description {
+      display: inline-block;
+      width: 47%;
+      text-align: -webkit-left;
+      font-size: 78%;
+      margin-left: 5px;
+    }
+  }
+}
+
+.estadisticasGenerales {
+  margin-top: 20px;
+  background-color: #0467c1;
+  color: #fff;
+  text-align: center;
+  padding: 6px;
+  .title {
+    font-weight: 800;
+  }
+}
+
+.tabla {
+  .celda {
+    display: inline-block;
+    width: 50%;
+    padding: 7px;
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid #d0d1d2;
+  }
+  .tamanio {
+    font-size: 70%;
+  }
+}
+
+.abajo {
+  margin-top: 10%;
+}

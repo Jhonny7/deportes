@@ -1,0 +1,166 @@
+<ion-header color="casco">
+  <ion-toolbar color="casco">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <img src="assets/imgs/equipo/179696.png" class="imgHeader" />
+    </ion-buttons>
+    <ion-title>Datos del jugador por equipos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="contenedorJugador">
+    <div class="foto">
+      <img *ngIf="jugador.fotografia == null" src="assets/imgs/jugador/110542.png" class="imgContainer" />
+      <img *ngIf="jugador.fotografia != null" src="{{jugador.fotografia}}" class="imgContainer" />
+    </div>
+    <div class="data">
+      <div class="title">Nombre: </div>
+      <div class="description">{{jugador.nombre}}</div>
+      <div class="title">Apellido Paterno: </div>
+      <div class="description">{{jugador.apellidoPaterno}}</div>
+      <div class="title">Apellido Paterno: </div>
+      <div class="description">{{jugador.apellidoMaterno}}</div>
+      <div class="title">Rama: </div>
+      <div class="description">{{jugador.rama}}</div>
+      <div class="title">Nivel: </div>
+      <div class="description">{{jugador.level}}</div>
+      <div class="title">Saldo en la cuenta: </div>
+      <div class="description">{{jugador.sale}}</div>
+    </div>
+  </div>
+
+  <mat-expansion-panel *ngFor="let equipo of equipos">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{equipo.descripcion}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="tabla">
+      <div class="celda">Datos</div>
+      <div class="celda">Valores</div>
+
+      <div class="celda tamanio">
+        <ion-input style="height: 14px;" value="Pases de touch" disabled></ion-input>
+      </div>
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,1)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.touch_pass"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,1)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+      <div class="celda tamanio">Anotaciones por pases</div>
+
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,2)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.annotation_by_pass"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,2)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+
+      <div class="celda tamanio">Anotaciones por carreras</div>
+
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,3)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.annotation_by_race"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,3)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+
+      <div class="celda tamanio">Intercepciones</div>
+
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,4)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.interceptions"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,4)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+
+      <div class="celda tamanio">Sachs</div>
+
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,5)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.sachs"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,5)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+
+      <div class="celda tamanio">Conversiones</div>
+
+      <div class="celda tamanio">
+        <div class="divider">
+          <ion-fab>
+            <ion-fab-button class="fabLeft" (click)="decrementTouch(equipo,6)">
+              <ion-icon name="remove"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <ion-input style="height: 14px;" [(ngModel)]="equipo.conversions"></ion-input>
+          <ion-fab>
+            <ion-fab-button class="fabRigth" (click)="incrementTouch(equipo,6)">
+              <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        </div>
+      </div>
+    </div>
+
+    <div class="abajo">
+      <ion-button expand="block" color="casco" (click)="editEstadisticasByEquipo(equipo)">
+        <ion-icon name="apps" slot="start"></ion-icon>
+        Editar
+      </ion-button>
+      <ion-button expand="block" color="danger" (click)="deleteEstadisticasByEquipo(equipo)">
+        <ion-icon name="cut" slot="start"></ion-icon>
+        Eliminar
+      </ion-button>
+    </div>
+  </mat-expansion-panel>
+</ion-content>

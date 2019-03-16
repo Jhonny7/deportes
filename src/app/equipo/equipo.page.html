@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Hola {{usuario.nombre}} {{usuario.apellido_paterno}}
+      Equipos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,23 +15,24 @@
       refreshingText="Actualizando...">
     </ion-refresher-content>
   </ion-refresher>
+
   <ion-list class="margin_top_list">
-    <ion-item-sliding *ngFor="let jugador of jugadores" >
-      <ion-item class="margin_top" (click)="openData(jugador)">
+    <ion-item-sliding *ngFor="let equipo of equipos">
+      <ion-item class="margin_top">
         <ion-avatar slot="start">
-          <img src="assets/imgs/jugador/110542.png" *ngIf="jugador!=null && jugador.fotografia == null">
-          <img src="{{jugador.fotografia}}" *ngIf="jugador.fotografia != null">
+          <img src="assets/imgs/equipo/network.png" *ngIf="equipo!=null && equipo.fotografia == null">
+          <img src="{{equipo.fotografia}}" *ngIf="equipo.fotografia != null">
         </ion-avatar>
-        <ion-label>{{jugador.nombre}}</ion-label>
+        <ion-label>{{equipo.descripcion}}</ion-label>
       </ion-item>
       <ion-item-options side="end" class="margin_top">
-        <ion-item-option (click)="editar(jugador)">
+        <ion-item-option (click)="editar(equipo)">
           <div class="divText">
             <div>Editar</div>
             <ion-icon name="construct"></ion-icon>
           </div>
         </ion-item-option>
-        <ion-item-option (click)="eliminar(jugador)" color="danger">
+        <ion-item-option (click)="eliminar(equipo)" color="danger">
           <div class="divText">
             <div>Borrar</div>
             <ion-icon name="trash"></ion-icon>
@@ -40,6 +41,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="casco" (click)="openCrud(1)">
       <ion-icon name="add"></ion-icon>

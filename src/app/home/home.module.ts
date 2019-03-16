@@ -23,8 +23,8 @@ import { CrudJugadorPage } from '../crud-jugador/crud-jugador.page';
     SharedModule,
     ReactiveFormsModule
   ],
-  declarations: [HomePage, CrudJugadorPage],
-  entryComponents:[CrudJugadorPage],
+  declarations: [HomePage, CrudJugadorPage, ],
+  entryComponents:[CrudJugadorPage, ],
   exports:[ReactiveFormsModule]
 })
 export class HomePageModule {}
